@@ -10,7 +10,7 @@ const router = new Router({ prefix: '/api/v1' })
 
 //GET /users/
 router.get('/', (ctx, next) => {
-    ctx.body = 'hello users'
+    ctx.body = 'hello use1111rs'
     console.log('111')
 })
 
@@ -594,7 +594,7 @@ router.get('/dept', (ctx) => {
         data: [
             {
                 value: 1,
-                label: "有来技术",
+                label: "技术",
                 children: [
                     {
                         value: 2,
