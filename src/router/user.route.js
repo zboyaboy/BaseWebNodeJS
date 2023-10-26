@@ -594,7 +594,7 @@ router.get('/dept', (ctx) => {
         data: [
             {
                 value: 1,
-                label: "有来技术",
+                label: "技术",
                 children: [
                     {
                         value: 2,
