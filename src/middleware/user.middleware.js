@@ -1,5 +1,5 @@
 const { getUserInfo } = require('../service/user.service')
-const { userFormateError, userAlreadyExisted, userRegisterError, userLoginError, invalidPasswordError, tokenExpiredError, jsonWebTokenError, hasAdminPermission } = require('../constant/error.type')
+const { userFormateError, userAlreadyExisted, userRegisterError, userLoginError, invalidPasswordError, userDoesNotExisted, jsonWebTokenError, hasAdminPermission } = require('../constant/error.type')
 const bcrypt = require('bcryptjs');
 
 const userValidator = async (ctx, next) => {
@@ -41,6 +41,27 @@ const cryptPassword = async (ctx, next) => {
 
 const verifyLogin = async (ctx, next) => {
     const { username, password } = ctx.request.body
+    if (ctx.session.verifyCodeKey != ctx.request.body.verifyCodeKey) {
+
+        ctx.body = {
+            code: '00001',
+            data: {},
+            msg: '验证码校验信息验证失败'
+        }
+        return
+    }
+    else {
+        if (ctx.session.verifyCodeKey != ctx.request.body.verifyCode) {
+
+            ctx.body = {
+                code: '00002',
+                data: {},
+                msg: '验证码输入不正确'
+            }
+            return
+        }
+
+    }
 
     try {
         const res = await getUserInfo({ username })

@@ -8,6 +8,7 @@ const parameter = require('koa-parameter');
 
 const app = new Koa();
 const ErrorHandler = require('./errorHandler')
+const session = require('koa-generic-session')
 
 const router = require('../router')
 
@@ -16,13 +17,23 @@ app.use(koaBody({
     formidable: {//在option里的相对路径，不是相对当前的路径。是相对于Process.cwd()的相对路径        
         uploadDir: path.join(__dirname, '../upload'),
         keepExtensions: true
-    }
+    },
+    parsedMethods: ['POST', 'PUT', 'PATCH', 'DELETE']
 }))
 app.use(koaStatic(path.join(__dirname, '../upload')))
 app.use(parameter(app))
 app.use(cors())
-    .use(router.routes())
-    .use(router.allowedMethods());
+app.keys = ['Qianduan2023']
+app.use(session({
+    // 配置 cookier
+    cookie: {
+        path: '/',
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000
+    }
+}))
+app.use(router.routes())
+app.use(router.allowedMethods());
 
 app.on('error', ErrorHandler)
 

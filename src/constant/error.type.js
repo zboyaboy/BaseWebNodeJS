@@ -15,19 +15,19 @@ module.exports = {
         result: ''
     },
     userDoesNotExisted: {
-        code: '10004',
-        message: '用户名不存在',
-        result: ''
+        code: '10004', data: {},
+        msg: '用户名不存在',
+
     },
     userLoginError: {
         code: '10005',
-        message: '用户登录异常',
-        result: ''
+        data: {},
+        msg: '用户登录异常',
     },
     invalidPasswordError: {
         code: '10006',
-        message: '用户密码错误',
-        result: ''
+        data: {},
+        msg: '用户密码错误'
     },
     changePasswordError: {
         code: '10007',
@@ -78,6 +78,11 @@ module.exports = {
     invalidProductsIDError: {
         code: '10206',
         message: '无效的商品ID',
+        result: ''
+    },
+    cartFormatError: {
+        code: '10301',
+        message: '购物车数据格式错误',
         result: ''
     }
 }
