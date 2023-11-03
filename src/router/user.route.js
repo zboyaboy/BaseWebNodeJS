@@ -14,6 +14,8 @@ router.get('/', (ctx, next) => {
     console.log('111')
 })
 
+//注册接口
+router.post('/register', userValidator, verifyUser, cryptPassword, register)
 
 //登录接口
 router.post('/auth/login', userValidator, verifyLogin, cryptPassword, login)
