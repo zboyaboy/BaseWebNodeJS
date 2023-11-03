@@ -11,7 +11,7 @@ const router = new Router({ prefix: '/api/v1' })
 //GET /users/
 router.get('/', (ctx, next) => {
     ctx.body = 'hello use1111rs'
-    console.log('111')
+    console.log('666')
 })
 
 //注册接口
